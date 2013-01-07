@@ -56,33 +56,31 @@ class Spitogatos extends CI_Controller {
 		// echo 'Username:'.$this->username.'<br />';
 		// echo 'Password:'.$this->password.'<br />';
 
-		$this->load->library("xmlrpc");
-		$this->xmlrpc->server("http://ws.audioscrobbler.com/2.0/", 80);
-		$this->xmlrpc->method("user.getrecenttracks");
-		$request = array(
-                 array(
-                       array(
-                             'user'=>'rj', 
-                             'api_key'=>'b25b959554ed76058ac220b7b2e0a026'
-                            ),
-                       'struct'
-                      )
-                );
-		$this->xmlrpc->request($request);
-		if(!$this->xmlrpc->send_request())
-		{
-		    echo $this->xmlrpc->display_error();
-		}
-		//$this->xmlrpc->request($request);
-
+		$this->xmlrpc->server("http://webservices.spitogatos.gr/listingSync/v1_0");
+		$this->xmlrpc->method("sync.getListing");
 		// $request = array(
-		// 			//array('A12312LD8756Y4IWP2F4KGSMV','string'),
-		// 			//array('projectteam','string'),
-		// 			//array('$*z1$*','string'),
-		// 			//array(1510128, 'int')
-		// 			//);
-		// 	'A12312LD8756Y4IWP2F4KGSMV', 'projectteam', '$*z1$*', 1510128);
+  //                array(
+  //                      array(
+  //                            'user'=>'rj', 
+  //                            'api_key'=>'b25b959554ed76058ac220b7b2e0a026'
+  //                           ),
+  //                      'struct'
+  //                     )
+  //               );
 		// $this->xmlrpc->request($request);
+
+		$request = array(
+					array('A12312LD8756Y4IWP2F4KGSMV','string'),
+					array('projectteam','string'),
+					array('$*z1$*','string'),
+					array(1510128, 'int'),
+					'struct'
+					);
+
+		// echo $request;
+		// 	'A12312LD8756Y4IWP2F4KGSMV', 'projectteam', '$*z1$*', 1510128);
+		$this->xmlrpc->request($request);
+		$this->xmlrpc->set_debug(TRUE);
 
 		if ( ! $this->xmlrpc->send_request())
 		 {
