@@ -78,9 +78,9 @@ class Spitogatos extends CI_Controller {
 					);
 
 		// echo $request;
-		// 	'A12312LD8756Y4IWP2F4KGSMV', 'projectteam', '$*z1$*', 1510128);
+		//$request = array('A12312LD8756Y4IWP2F4KGSMV', 'projectteam', '$*z1$*', 1510128);
 		$this->xmlrpc->request($request);
-		$this->xmlrpc->set_debug(TRUE);
+		//$this->xmlrpc->set_debug(TRUE);
 
 		if ( ! $this->xmlrpc->send_request())
 		 {
